@@ -8,7 +8,8 @@ type Server struct {
 
 func New(address string) Server {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/health", getHealth)
+	mux.HandleFunc("/health", handleHealth)
+	mux.HandleFunc("/chat", handleChat)
 	server := &http.Server{
 		Addr: address,
 		Handler: mux,

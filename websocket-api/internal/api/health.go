@@ -2,7 +2,7 @@ package api
 
 import "net/http"
 
-func getHealth(w http.ResponseWriter, r *http.Request) {
+func handleHealth(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 
 	// probably a better way of doing this
