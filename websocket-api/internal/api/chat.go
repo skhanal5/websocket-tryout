@@ -7,11 +7,13 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// read into this
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
 }
 
+// probably a more elegant way of writing this
 func handleChat(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {

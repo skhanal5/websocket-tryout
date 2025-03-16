@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	//TODO: Add logging throughout app
 	s := api.New(":8080")
 	log.Fatal(s.Start())
 }
