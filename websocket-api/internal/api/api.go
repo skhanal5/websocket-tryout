@@ -11,7 +11,7 @@ func New(address string) Server {
 	mux.HandleFunc("/health", handleHealth)
 	mux.HandleFunc("/chat", handleChat)
 	server := &http.Server{
-		Addr: address,
+		Addr:    address,
 		Handler: mux,
 	}
 	return Server{
