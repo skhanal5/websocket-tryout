@@ -1,0 +1,17 @@
+# Binary
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/websocket-api
+
+# Test output
+*.out
+
+# Go work
+go.work
+go.work.sum
+
+# Environment
+.env
