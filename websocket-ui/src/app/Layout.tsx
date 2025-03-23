@@ -14,19 +14,19 @@ export default function Layout() {
       {
         contact: "Foo Bar",
         messageBlurb: "Hello World!",
-        timestamp: "",
+        timestamp: "3/23/2025",
         isRead: false,
       },
       {
         contact: "Subodh",
         messageBlurb: "Testing this message",
-        timestamp: "string",
+        timestamp: "3/23/2025",
         isRead: false,
       },
       {
-        contact: "string",
-        messageBlurb: "string",
-        timestamp: "string",
+        contact: "Khanal",
+        messageBlurb: "Another test!",
+        timestamp: "3/23/2025",
         isRead: false,
       },
     ];

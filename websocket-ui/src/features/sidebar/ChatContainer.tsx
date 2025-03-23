@@ -1,3 +1,4 @@
+import Column from "@/components/containers/Column";
 import ChatPreview from "./ChatPreview";
 
 interface ChatMetadata {
@@ -13,7 +14,7 @@ interface ChatHistoryProps {
 
 export default function ChatContainer({ chats }: ChatHistoryProps) {
   return (
-    <div>
+    <Column className="m-3 gap-5">
       {chats.map((chat) => (
         <ChatPreview
           contact={chat.contact}
@@ -22,6 +23,6 @@ export default function ChatContainer({ chats }: ChatHistoryProps) {
           isRead={chat.isRead}
         />
       ))}
-    </div>
+    </Column>
   );
 }
