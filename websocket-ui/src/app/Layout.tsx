@@ -1,6 +1,5 @@
-import { ChatSidebar } from "@/components/sidebar/Sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import History from "@/features/sidebar/ChatContainer";
+import { ChatSidebar } from "@/components/sidebar/ChatSidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import Chat from "@/types/chats";
 import { useEffect, useState } from "react";
 
@@ -34,11 +33,7 @@ export default function Layout() {
 
   return (
     <SidebarProvider>
-      <ChatSidebar />
-      <main>
-        <SidebarTrigger />
-        <History chats={chats} />
-      </main>
+      <ChatSidebar chats={chats} />
     </SidebarProvider>
   );
 }
