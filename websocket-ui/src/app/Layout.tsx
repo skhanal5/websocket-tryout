@@ -1,7 +1,10 @@
+import Container from "@/components/containers/Container";
+import Row from "@/components/containers/Row";
 import { ChatSidebar } from "@/components/sidebar/ChatSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Chat from "@/types/chats";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router";
 
 export default function Layout() {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -32,8 +35,15 @@ export default function Layout() {
   }, []);
 
   return (
-    <SidebarProvider>
-      <ChatSidebar chats={chats} />
-    </SidebarProvider>
+    <Container>
+      <Row>
+        <SidebarProvider>
+          <ChatSidebar chats={chats} />
+        </SidebarProvider>
+        <main>
+          <Outlet />
+        </main>
+      </Row>
+    </Container>
   );
 }
