@@ -1,11 +1,10 @@
 import Container from "@/components/containers/Container";
+import Chat from "@/features/chat/Chat";
 
 export default function App() {
   return (
-    <Container className="w-full h-full flex-col">
-      <div>
-        hello world!
-      </div>
+    <Container className="w-screen h-screen bg-slate-100">
+      <Chat messages={[]}/>
     </Container>
   )
 }
