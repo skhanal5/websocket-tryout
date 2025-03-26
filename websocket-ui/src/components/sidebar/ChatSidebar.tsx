@@ -3,25 +3,29 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import History from "@/features/sidebar/ChatContainer";
+import ChatHeader from "@/features/sidebar/ChatHeader";
 import Chat from "@/types/chats";
 
 interface ChatSidebarProps {
-  chats: Chat[]
+  chats: Chat[];
 }
 
-export function ChatSidebar({chats}: ChatSidebarProps) {
+export function ChatSidebar({ chats }: ChatSidebarProps) {
   return (
-    <Sidebar className="w-1/4">
-      <SidebarHeader />
-      <SidebarContent>
+    <Sidebar className="p-5 w-1/4">
+      <SidebarHeader className="bg-white">
+        <ChatHeader></ChatHeader>
+      </SidebarHeader>
+      <SidebarContent className="bg-white">
         <SidebarGroup>
-          <History chats={chats} />
+          <SidebarGroupContent>
+            <History chats={chats} />
+          </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup />
-        <SidebarGroup />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
