@@ -14,7 +14,7 @@ interface ChatHistoryProps {
 
 export default function ChatContainer({ chats }: ChatHistoryProps) {
   return (
-    <Column className="m-3 gap-5">
+    <Column className="p-5 gap-5">
       {chats.map((chat) => (
         <ChatPreview
           contact={chat.contact}

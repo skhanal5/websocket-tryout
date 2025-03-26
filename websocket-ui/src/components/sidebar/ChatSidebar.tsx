@@ -14,7 +14,7 @@ interface ChatSidebarProps {
 
 export function ChatSidebar({chats}: ChatSidebarProps) {
   return (
-    <Sidebar>
+    <Sidebar className="w-1/4">
       <SidebarHeader />
       <SidebarContent>
         <SidebarGroup>

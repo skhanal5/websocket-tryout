@@ -3,8 +3,11 @@ import Chat from "@/features/chat/Chat";
 
 export default function App() {
   return (
-    <Container className="w-screen h-screen bg-slate-100">
-      <Chat messages={[]}/>
+    <Container className="flex-1 bg-slate-100">
+      <Chat recipient={{
+        profilePicture: "",
+        name: "Subodh Khanal"
+      }} messages={[]}/>
     </Container>
   )
 }

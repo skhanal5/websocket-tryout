@@ -35,15 +35,13 @@ export default function Layout() {
   }, []);
 
   return (
-    <Container>
-      <Row>
-        <SidebarProvider>
-          <ChatSidebar chats={chats} />
-        </SidebarProvider>
-        <main>
-          <Outlet />
-        </main>
-      </Row>
-    </Container>
+    <Row className="w-screen h-screen">
+      <SidebarProvider className="w-1/4">
+        <ChatSidebar chats={chats} />
+      </SidebarProvider>
+      <Container className="flex-1">
+        <Outlet />
+      </Container>
+    </Row>
   );
 }
