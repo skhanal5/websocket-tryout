@@ -2,8 +2,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import History from "@/features/sidebar/PreviewContainer";
