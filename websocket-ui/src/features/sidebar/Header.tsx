@@ -1,7 +1,7 @@
 import Row from "@/components/containers/Row";
 import { SquarePenIcon } from "lucide-react";
 
-export default function ChatHeader() {
+export default function Header() {
   return (
     <Row className="justify-content items-center">
       <div className="flex-1 text-xl font-bold">Chats</div>

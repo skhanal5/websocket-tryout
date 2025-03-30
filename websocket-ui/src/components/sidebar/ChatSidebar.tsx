@@ -6,8 +6,8 @@ import {
   SidebarGroupContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import History from "@/features/sidebar/ChatContainer";
-import ChatHeader from "@/features/sidebar/ChatHeader";
+import History from "@/features/sidebar/PreviewContainer";
+import Header from "@/features/sidebar/Header";
 import Chat from "@/types/chats";
 
 interface ChatSidebarProps {
@@ -18,7 +18,7 @@ export function ChatSidebar({ chats }: ChatSidebarProps) {
   return (
     <Sidebar className="p-5 w-1/4">
       <SidebarHeader className="bg-white">
-        <ChatHeader></ChatHeader>
+        <Header></Header>
       </SidebarHeader>
       <SidebarContent className="bg-white">
         <SidebarGroup>

@@ -1,5 +1,5 @@
 import Column from "@/components/containers/Column";
-import ChatPreview from "./ChatPreview";
+import Preview from "./Preview";
 
 interface ChatMetadata {
   contact: string;
@@ -12,11 +12,11 @@ interface ChatHistoryProps {
   chats: ChatMetadata[];
 }
 
-export default function ChatContainer({ chats }: ChatHistoryProps) {
+export default function PreviewContainer({ chats }: ChatHistoryProps) {
   return (
     <Column className="gap-3">
       {chats.map((chat) => (
-        <ChatPreview
+        <Preview
           contact={chat.contact}
           messageBlurb={chat.messageBlurb}
           timestamp={chat.timestamp}

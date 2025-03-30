@@ -9,13 +9,13 @@ interface PreviewProps {
   isRead: boolean;
 }
 
-export default function ChatPreview({
+export default function Preview({
   contact,
   messageBlurb,
   timestamp,
 }: PreviewProps) {
   return (
-    <Column className="p-2 bg-slate-50 rounded-sm shadow-sm justify-center  hover:cursor-pointer hover:bg-slate-100/30 hover:shadow-md">
+    <Column className="p-2 bg-slate-50 rounded-sm shadow-sm justify-center hover:cursor-pointer hover:bg-slate-100/30 hover:shadow-md">
       <Row className="gap-5 items-center ">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
