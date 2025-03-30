@@ -1,8 +1,8 @@
 import Column from "@/components/containers/Column";
-import Message from "./RecipientMessage";
-import ChatInput from "./ChatInput";
-import ContactHeader from "./ContactInfo";
-import RecipientChat from "./RecipientMessage";
+import Message from "./RecipientChat";
+import ContactHeader from "./Contact";
+import MessageForm from "./MessageForm";
+import Messages from "./Messages";
 
 interface Message {
   id: string;
@@ -22,21 +22,15 @@ interface ChatProps {
   messages: Message[];
 }
 
-export default function Chat({ contact: contact, messages }: ChatProps) {
+export default function Conversation({ contact: contact, messages }: ChatProps) {
   return (
     <Column className="w-full gap-5">
       <ContactHeader
         profilePicture={contact.profilePicture}
         name={contact.name}
       />
-      {messages.map((message) => (
-        <RecipientChat
-          key={message.id}
-          message={message.message}
-          timestamp={message.timestamp} 
-          profilePicture={message.profilePicture}        />
-      ))}
-      <ChatInput />
+      <Messages messages={messages}/>
+      <MessageForm />
     </Column>
   );
 }

@@ -3,17 +3,17 @@ import Container from "@/components/containers/Container";
 import Row from "@/components/containers/Row";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface RecipientChatProps {
+interface RecipientMessageProps {
   message: string;
   timestamp: string; // should be a date
   profilePicture: string;
 }
 
-export default function RecipientChat({
+export default function RecipientMessage({
   message,
   timestamp,
   profilePicture,
-}: RecipientChatProps) {
+}: RecipientMessageProps) {
   return (
     <Row className="gap-2 justify-center items-start">
       <Avatar className="">

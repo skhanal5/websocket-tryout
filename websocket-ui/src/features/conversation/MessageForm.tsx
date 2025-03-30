@@ -2,7 +2,7 @@ import Container from "@/components/containers/Container";
 import Row from "@/components/containers/Row";
 import { Send } from "lucide-react";
 
-export default function ChatInput() {
+export default function MessageForm() {
   return (
     <Container className="p-10 h-1/6 bg-white border-t-1">
       <Row className="w-full bg-white gap-5 justify-center items-center">

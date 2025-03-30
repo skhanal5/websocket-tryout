@@ -1,15 +1,15 @@
 import Row from "@/components/containers/Row";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface ContactInfoProps {
+interface Contact {
   profilePicture: string; // should be a path or sum
   name: string;
 }
 
-export default function ContactInfo({
+export default function Contact({
   profilePicture,
   name,
-}: ContactInfoProps) {
+}: Contact) {
   return (
     <Row className="p-3 bg-white gap-5 justify-center items-center border-b-1">
       <Avatar>
