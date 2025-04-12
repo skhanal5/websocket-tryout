@@ -4,15 +4,21 @@ import RegisterPopup from "@/features/register/Register";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<string>();
 
   useEffect(() => {
-    setUser(null)
+    localStorage.clear()
+    const result = localStorage.getItem("user");
+    if (result == null) {
+      setUser("");
+    } else {
+      setUser(result);
+    }
   }, []);
 
   return (
     <Container className="flex-1 bg-slate-100">
-      {user !== null ? (
+      {user !== "" ? (
         <Chat
           contact={{
             profilePicture: "",
@@ -36,7 +42,7 @@ export default function App() {
           ]}
         />
       ) : (
-        <RegisterPopup/>
+        <RegisterPopup />
       )}
     </Container>
   );
