@@ -2,7 +2,11 @@ package repository
 
 import (
 	"context"
+	"fmt"
+	"os"
+
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/skhanal5/websocket-api/internal"
 )
 
 type Repository interface {
@@ -14,12 +18,20 @@ type Database struct {
 	pool *pgxpool.Pool
 }
 
-func NewDatabase(connection string) Repository {
-	conn, err := pgxpool.New(context.Background(), connection) // context usage
+func setupConnection(cfg internal.Config) (*pgxpool.Pool) {
+	connString := fmt.Sprintf("postgresql://%s:%d/%s?user=%s&password=%s", cfg.DatabaseHost, cfg.DatabasePort, cfg.DatabaseName, cfg.DatabaseUser, cfg.DatabasePassword)
+	dbpool, err := pgxpool.New(context.Background(), connString)
 	if err != nil {
-		panic("Couldn't establish database connection")
+		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
+		os.Exit(1)
 	}
+	defer dbpool.Close()
+	return dbpool 
+}
+
+func NewDatabase(cfg internal.Config) Repository {
+	pool := setupConnection(cfg)
 	return Database{
-		pool: conn,
+		pool: pool,
 	}
 }
