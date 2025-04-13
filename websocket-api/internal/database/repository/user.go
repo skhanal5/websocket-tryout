@@ -1,4 +1,4 @@
-package database
+package repository
 
 import (
 	"context"
@@ -7,8 +7,8 @@ import (
 
 	"github.com/georgysavva/scany/v2/pgxscan"
 	"github.com/jackc/pgx/v5/pgconn"
-	"github.com/skhanal5/websocket-api/internal/model"
-	"github.com/skhanal5/websocket-api/internal/sql"
+	"github.com/skhanal5/websocket-api/internal/database/model"
+	"github.com/skhanal5/websocket-api/internal/database/sql"
 )
 
 type UserRepository interface {
