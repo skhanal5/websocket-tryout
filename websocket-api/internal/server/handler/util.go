@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/go-playground/validator/v10"
 )
 
+// encode is a generic function to encode a struct into a json response
 func encode[T any](w http.ResponseWriter, r *http.Request, status int, v T) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
@@ -15,6 +18,13 @@ func encode[T any](w http.ResponseWriter, r *http.Request, status int, v T) erro
 	return nil
 }
 
+// validate is a generic function to validate any request payload
+func validate[T any](v T) error {
+	  validate := validator.New()
+	  return validate.Struct(v)
+}
+
+// decode is a generic function to decode a request body into a struct
 func decode[T any](r *http.Request) (T, error) {
 	var v T
 	if err := json.NewDecoder(r.Body).Decode(&v); err != nil {

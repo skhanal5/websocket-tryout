@@ -9,11 +9,12 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/skhanal5/websocket-api/internal/database/model"
 	"github.com/skhanal5/websocket-api/internal/database/sql"
+	"github.com/skhanal5/websocket-api/internal/server/payload"
 )
 
 type UserRepository interface {
-	GetUser(username string) (*model.User, error)
-	InsertUser(username string) (error)
+	GetUser(userId string) (*model.User, error)
+	InsertUser(request payload.UserRequest) (error)
 }
 
 func (d Database) GetUser(username string) (*model.User, error) {
@@ -36,7 +37,7 @@ func (d Database) GetUser(username string) (*model.User, error) {
 	return &user, nil
 }
 
-func (d Database) InsertUser(username string) (error) {
+func (d Database) InsertUser(request payload.UserRequest) (error) {
 
 	tx, err := d.pool.Begin(context.Background())
 	if err != nil {
@@ -48,7 +49,7 @@ func (d Database) InsertUser(username string) (error) {
 	defer tx.Rollback(context.Background())
 
 
-	sql, params, err := sql.InsertUser(username)
+	sql, params, err := sql.InsertUser(request)
 	if err != nil {
 		return err
 	}

@@ -13,8 +13,8 @@ import (
 
 
 type MessageRepository interface {
-	GetMessagesWithRecipient(sender string, recipient string) ([]*model.Message, error)
-	InsertMessage(content string, sender string, recipient string, timestamp string) (error)
+	GetMessagesWithRecipient(senderId string, recipientId string) ([]*model.Message, error)
+	InsertMessage(content string, senderId string, recipientId string, timestamp string) (error)
 }
 
 func (d Database) GetMessagesWithRecipient(sender string, recipient string) ([]*model.Message, error) {

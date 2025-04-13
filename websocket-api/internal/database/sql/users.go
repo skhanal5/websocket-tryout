@@ -1,12 +1,15 @@
 package sql
 
-import "github.com/doug-martin/goqu/v9"
+import (
+	"github.com/doug-martin/goqu/v9"
+	"github.com/skhanal5/websocket-api/internal/server/payload"
+)
 
-func InsertUser(username string) (string, interface{}, error) {
+func InsertUser(request payload.UserRequest) (string, interface{}, error) {
 	dialect := goqu.Dialect("postgres")
 
 	record := goqu.Record{
-		"username": username,
+		"username": request.Username,
 	}
 	result := dialect.Insert("users").Rows(
 		record,
