@@ -9,12 +9,13 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/skhanal5/websocket-api/internal/database/model"
 	"github.com/skhanal5/websocket-api/internal/database/sql"
+	"github.com/skhanal5/websocket-api/internal/server/payload"
 )
 
 
 type MessageRepository interface {
 	GetMessagesWithRecipient(senderId string, recipientId string) ([]*model.Message, error)
-	InsertMessage(content string, senderId string, recipientId string, timestamp string) (error)
+	InsertMessage(message payload.MessageRequest) (error)
 }
 
 func (d Database) GetMessagesWithRecipient(sender string, recipient string) ([]*model.Message, error) {
@@ -37,7 +38,7 @@ func (d Database) GetMessagesWithRecipient(sender string, recipient string) ([]*
 	return messages, nil
 }
 
-func (d Database) InsertMessage(content string, sender string, recipient string, timestamp string) (error) {
+func (d Database) InsertMessage(message payload.MessageRequest) (error) {
 
 	tx, err := d.pool.Begin(context.Background())
 	if err != nil {
@@ -49,7 +50,7 @@ func (d Database) InsertMessage(content string, sender string, recipient string,
 	defer tx.Rollback(context.Background())
 
 
-	sql, params, err := sql.InsertMessage(content, sender, recipient, timestamp)
+	sql, params, err := sql.InsertMessage(message.Content, message.Sender, message.Recipient, message.Timestamp)
 	if err != nil {
 		return err
 	}

@@ -30,7 +30,7 @@ func Start(cfg internal.Config) {
 
 func registerRoutes(mux *http.ServeMux, h *handler.Handler) {
 	mux.HandleFunc("GET /health", h.GetHealth)
-	mux.HandleFunc("POST /chat", h.InsertChat)
+	mux.HandleFunc("GET /chat", h.InsertChat) //websockets are GET
 	mux.HandleFunc("POST /users", h.InsertUser)
 	mux.HandleFunc("GET /users/{userId}", h.GetUser)
 	mux.HandleFunc("GET /users/{userId}/messages/{recipientId}", h.GetMessagesWithRecipient)
