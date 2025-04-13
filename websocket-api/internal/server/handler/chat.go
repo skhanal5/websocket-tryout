@@ -1,4 +1,4 @@
-package api
+package handler
 
 import (
 	"log"
@@ -14,7 +14,7 @@ var upgrader = websocket.Upgrader{
 }
 
 // probably a more elegant way of writing this
-func handleChat(w http.ResponseWriter, r *http.Request) {
+func (h Handler) InsertChat(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
