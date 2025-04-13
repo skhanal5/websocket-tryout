@@ -17,7 +17,7 @@ var upgrader = websocket.Upgrader{
 // TODO: not a good idea 
 var activeConnections = make(map[string]*websocket.Conn)
 
-func getActiveOrMakeNewConn(user string) (*websocket.Conn, error) {
+func getActiveOrMakeNewConn(w http.ResponseWriter, r *http.Request, user string) (*websocket.Conn, error) {
 	senderConn, ok := activeConnections[user]
 	if !ok {
 		senderConn, err := upgrader.Upgrade(w, r, nil)
@@ -32,7 +32,7 @@ func getActiveOrMakeNewConn(user string) (*websocket.Conn, error) {
 // probably a more elegant way of writing this
 func (h Handler) InsertChat(w http.ResponseWriter, r *http.Request) {
 	user := r.URL.Query().Get("user")
-	senderConn, err := getActiveOrMakeNewConn(user)
+	senderConn, err := getActiveOrMakeNewConn(w, r, user)
 	if err != nil {
 		log.Fatal(err)
 		return 
