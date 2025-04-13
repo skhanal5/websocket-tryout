@@ -13,9 +13,9 @@ func (h Handler) GetMessagesWithRecipient(w http.ResponseWriter, r *http.Request
 
 	messages, err := h.repository.GetMessagesWithRecipient(userId, recipientId)
 	if err != nil {
-		encode(w,r, http.StatusInternalServerError, payload.Error{
+		encode(w, r, http.StatusInternalServerError, payload.Error{
 			Message: "Failed to get messages",
-			Err: err,
+			Err:     err,
 		})
 	}
 	response := payload.MessagesResponse{Messages: messages}

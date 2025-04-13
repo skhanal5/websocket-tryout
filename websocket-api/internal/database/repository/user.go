@@ -14,7 +14,7 @@ import (
 
 type UserRepository interface {
 	GetUser(userId string) (*model.User, error)
-	InsertUser(request payload.UserRequest) (error)
+	InsertUser(request payload.UserRequest) error
 }
 
 func (d Database) GetUser(username string) (*model.User, error) {
@@ -37,7 +37,7 @@ func (d Database) GetUser(username string) (*model.User, error) {
 	return &user, nil
 }
 
-func (d Database) InsertUser(request payload.UserRequest) (error) {
+func (d Database) InsertUser(request payload.UserRequest) error {
 
 	tx, err := d.pool.Begin(context.Background())
 	if err != nil {
@@ -47,7 +47,6 @@ func (d Database) InsertUser(request payload.UserRequest) (error) {
 	// Rollback is safe to call even if the tx is already closed, so if
 	// the tx commits successfully, this is a no-op
 	defer tx.Rollback(context.Background())
-
 
 	sql, params, err := sql.InsertUser(request)
 	if err != nil {

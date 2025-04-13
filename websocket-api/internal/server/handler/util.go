@@ -20,8 +20,8 @@ func encode[T any](w http.ResponseWriter, r *http.Request, status int, v T) erro
 
 // validate is a generic function to validate any request payload
 func validate[T any](v T) error {
-	  validate := validator.New()
-	  return validate.Struct(v)
+	validate := validator.New()
+	return validate.Struct(v)
 }
 
 // decode is a generic function to decode a request body into a struct

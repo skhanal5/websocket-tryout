@@ -8,7 +8,7 @@ type Handler struct {
 	repository repository.Repository
 }
 
-func NewHandler(repository repository.Repository) Handler { 
+func NewHandler(repository repository.Repository) Handler {
 	return Handler{
 		repository: repository,
 	}

@@ -9,13 +9,12 @@ import (
 	"github.com/skhanal5/websocket-api/internal/server/handler"
 )
 
-
 func Start(cfg internal.Config) {
 
 	// setup database
 	pool := repository.NewDatabase(cfg)
 	h := handler.NewHandler(pool)
-	
+
 	// setup server
 	mux := http.NewServeMux()
 	registerRoutes(mux, &h)

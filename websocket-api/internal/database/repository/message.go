@@ -12,10 +12,9 @@ import (
 	"github.com/skhanal5/websocket-api/internal/server/payload"
 )
 
-
 type MessageRepository interface {
 	GetMessagesWithRecipient(senderId string, recipientId string) ([]*model.Message, error)
-	InsertMessage(message payload.MessageRequest) (error)
+	InsertMessage(message payload.MessageRequest) error
 }
 
 func (d Database) GetMessagesWithRecipient(sender string, recipient string) ([]*model.Message, error) {
@@ -38,7 +37,7 @@ func (d Database) GetMessagesWithRecipient(sender string, recipient string) ([]*
 	return messages, nil
 }
 
-func (d Database) InsertMessage(message payload.MessageRequest) (error) {
+func (d Database) InsertMessage(message payload.MessageRequest) error {
 
 	tx, err := d.pool.Begin(context.Background())
 	if err != nil {
@@ -48,7 +47,6 @@ func (d Database) InsertMessage(message payload.MessageRequest) (error) {
 	// Rollback is safe to call even if the tx is already closed, so if
 	// the tx commits successfully, this is a no-op
 	defer tx.Rollback(context.Background())
-
 
 	sql, params, err := sql.InsertMessage(message.Content, message.Sender, message.Recipient, message.Timestamp)
 	if err != nil {

@@ -14,7 +14,7 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
-// TODO: not a good idea 
+// TODO: not a good idea
 var activeConnections = make(map[string]*websocket.Conn)
 
 func getActiveOrMakeNewConn(w http.ResponseWriter, r *http.Request, user string) (*websocket.Conn, error) {
@@ -35,7 +35,7 @@ func (h Handler) InsertChat(w http.ResponseWriter, r *http.Request) {
 	senderConn, err := getActiveOrMakeNewConn(w, r, user)
 	if err != nil {
 		log.Fatal(err)
-		return 
+		return
 	}
 
 	for {
@@ -46,7 +46,7 @@ func (h Handler) InsertChat(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 			return
 		}
-		
+
 		// get the connection for the right user
 		recipientConn := activeConnections[message.Recipient]
 

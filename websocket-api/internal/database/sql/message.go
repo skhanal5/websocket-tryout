@@ -8,10 +8,10 @@ func InsertMessage(content string, senderId string, recipientId string, timestam
 	dialect := goqu.Dialect("postgres")
 
 	record := goqu.Record{
-		"content": content,
-		"sender_id": senderId,
+		"content":      content,
+		"sender_id":    senderId,
 		"recipient_id": recipientId,
-		"timestamp": timestamp,
+		"timestamp":    timestamp,
 	}
 	result := dialect.Insert("message").Rows(
 		record,
@@ -23,7 +23,7 @@ func GetMessagesWithRecipient(senderId string, recipientId string) (string, inte
 	dialect := goqu.Dialect("postgres")
 
 	result := dialect.From("message").
-	Select("message", "sender_id", "recipient_id", "timestamp").
-	Where(goqu.C("sender_id").Eq(senderId), goqu.C("recipient_id").Eq(recipientId))
+		Select("message", "sender_id", "recipient_id", "timestamp").
+		Where(goqu.C("sender_id").Eq(senderId), goqu.C("recipient_id").Eq(recipientId))
 	return result.ToSQL()
 }

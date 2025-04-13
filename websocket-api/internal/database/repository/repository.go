@@ -18,7 +18,7 @@ type Database struct {
 	pool *pgxpool.Pool
 }
 
-func setupConnection(cfg internal.Config) (*pgxpool.Pool) {
+func setupConnection(cfg internal.Config) *pgxpool.Pool {
 	connString := fmt.Sprintf("postgresql://%s:%d/%s?user=%s&password=%s", cfg.DatabaseHost, cfg.DatabasePort, cfg.DatabaseName, cfg.DatabaseUser, cfg.DatabasePassword)
 	dbpool, err := pgxpool.New(context.Background(), connString)
 	if err != nil {
@@ -26,7 +26,7 @@ func setupConnection(cfg internal.Config) (*pgxpool.Pool) {
 		os.Exit(1)
 	}
 	defer dbpool.Close()
-	return dbpool 
+	return dbpool
 }
 
 func NewDatabase(cfg internal.Config) Repository {
