@@ -1,23 +1,22 @@
-.PHONY: clean rund logs logs-api logs-ui logs-db logs-admin
+.PHONY: clean restart rund db api logs
 
 clean:
 	docker compose down
-	docker compose rm
+
+restart: clean
+	docker compose rm 
 
 rund: clean
 	docker compose up -d
 
+build-api:
+	cd ./websocket-api; make build
+
+db: clean
+	docker compose up db pgadmin dozzle -d
+
+api: clean build-api
+	docker compose up db pgadmin api dozzle -d
+
 logs:
 	docker compose logs
-
-logs-api:
-	docker compose logs api
-
-logs-ui:
-	docker compose logs ui
-
-logs-db:
-	docker compose logs db
-
-logs-admin:
-	docker compose logs pgadmin
