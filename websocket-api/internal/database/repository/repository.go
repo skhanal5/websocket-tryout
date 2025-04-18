@@ -19,7 +19,7 @@ type Database struct {
 }
 
 func setupConnection(cfg internal.Config) *pgxpool.Pool {
-	connString := fmt.Sprintf("postgresql://%s:%d/%s?user=%s&password=%s", cfg.DatabaseHost, cfg.DatabasePort, cfg.DatabaseName, cfg.DatabaseUser, cfg.DatabasePassword)
+	connString := fmt.Sprintf("postgresql://%s:%s/%s?user=%s&password=%s", cfg.DatabaseHost, cfg.DatabasePort, cfg.DatabaseName, cfg.DatabaseUser, cfg.DatabasePassword)
 	dbpool, err := pgxpool.New(context.Background(), connString)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
