@@ -12,6 +12,8 @@ services:
     volumes:
       - local_pgdata:/var/lib/postgresql/data
   pgadmin:
+    depends_on:
+      - db
     image: dpage/pgadmin4
     container_name: pgadmin4_container
     restart: always
@@ -23,6 +25,8 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
   ui:
+    depends_on:
+    - api
     build: 
       context: ./websocket-ui
       dockerfile: Dockerfile
@@ -30,21 +34,22 @@ services:
     ports:
       - "3000:3000"
   api:
+    depends_on:
+      - db
     build: 
       context: ./websocket-api
       dockerfile: Dockerfile
     container_name: websocket-api
     ports:
-      - "8080:80"
+      - "9000:8080"
     environment:
       - ENVIRONMENT=local
+      - ADDRESS=localhost:8080
       - DATABASE_HOST=localhost
       - DATABASE_PORT=5432
       - DATABASE_NAME=messages
       - DATABASE_USERNAME=foo
-      - DATABASE_USERNAME=bar
-    depends_on:
-      - db
+      - DATABASE_PASSWORD=bar
   dozzle:
     image: amir20/dozzle:latest
     volumes:
