@@ -6,6 +6,7 @@ services:
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_DB: messages
       POSTGRES_USER: foo
       POSTGRES_PASSWORD: bar
     volumes:
@@ -17,12 +18,35 @@ services:
     ports:
       - "8888:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
-      PGADMIN_DEFAULT_PASSWORD: strong-password
+      PGADMIN_DEFAULT_EMAIL: root@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: changeme
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-  frontend:
+  ui:
+    build: 
+      context: ./websocket-ui
+      dockerfile: Dockerfile
+    container_name: websocket-ui
+    ports:
+      - "3000:3000"
+  api:
+    build: 
+      context: ./websocket-api
+      dockerfile: Dockerfile
+    container_name: websocket-api
+    ports:
+      - "8080:80"
+    environment:
+      - ENVIRONMENT=local
+      - DATABASE_HOST=localhost
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=messages
+      - DATABASE_USERNAME=foo
+      - DATABASE_USERNAME=bar
   
+    depends_on:
+      - db
+
 
 volumes:
   local_pgdata:
